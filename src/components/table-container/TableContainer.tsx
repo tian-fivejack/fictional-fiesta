@@ -1,8 +1,13 @@
 import { useState } from 'react';
 import styles from './TableContainer.module.css';
 import DataMain from './DataMain';
-import { useFetchDataEntity, useFetchDataMain } from '../../hooks/initData';
+import {
+  useFetchDataEntity,
+  useFetchDataMain,
+  useFetchDataRetribution,
+} from '../../hooks/initData';
 import DataEntity from './DataEntity';
+import DataRetribution from './DataRetribution';
 
 const tabTitles = ['Data Utama', 'Data Entitas', 'Data Pungutan'];
 
@@ -12,6 +17,9 @@ const TableContainer = () => {
     nomor_pengajuan: '20120B388FAE20240402000001',
   });
   const { data: dataEntitas } = useFetchDataEntity({
+    id_aju: '04eb6a72-bb63-5aed-5e92-f58a3bfd5da2',
+  });
+  const { data: dataPungutan } = useFetchDataRetribution({
     id_aju: '04eb6a72-bb63-5aed-5e92-f58a3bfd5da2',
   });
 
@@ -42,8 +50,8 @@ const TableContainer = () => {
       <div className={styles.tabContent}>
         {activeTab === 0 && !!dataUtama && <DataMain data={dataUtama} />}
         {activeTab === 1 && !!dataEntitas && <DataEntity data={dataEntitas} />}
-        {activeTab === 2 && (
-          <div>{/* Data Pungutan content will go here */}</div>
+        {activeTab === 2 && !!dataPungutan && (
+          <DataRetribution data={dataPungutan} />
         )}
         <div className={styles.buttonContainer}>
           <button type="button" disabled={activeTab === 0} onClick={onPrev}>

@@ -114,7 +114,7 @@ export type DataEntitas = {
   pembeli: Entity;
 };
 
-export type DataRetribution = {
+export type DataPungutan = {
   kd_moda?: string;
   id_aju: string;
   ur_moda?: string;
@@ -161,4 +161,7 @@ export type DataRetribution = {
   berat_kotor?: string;
   volume?: string;
   dataBank: unknown[];
+  transformed_nilai_fob?: string;
+  cif?: string;
+  cif_rp?: string;
 };

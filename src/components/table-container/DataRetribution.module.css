@@ -1,0 +1,12 @@
+.form {
+  width: 100%;
+  padding: 20px;
+}
+
+.row {
+  display: flex;
+  gap: 48px;
+  /* justify-content: space-between; */
+  margin-bottom: 15px;
+  width: 100%;
+}
