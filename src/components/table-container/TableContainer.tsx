@@ -1,51 +1,65 @@
 import { useState } from 'react';
 import styles from './TableContainer.module.css';
 import DataMain from './DataMain';
+import { useFetchDataEntity, useFetchDataMain } from '../../hooks/initData';
+import DataEntity from './DataEntity';
 
-const tabTitles = {
-  dataUtama: 'Data Utama',
-  dataEntitas: 'Data Entitas',
-  dataPungutan: 'Data Pungutan',
-} as const;
-type TabTitle = (typeof tabTitles)[keyof typeof tabTitles];
+const tabTitles = ['Data Utama', 'Data Entitas', 'Data Pungutan'];
 
-function TableContainer() {
-  const [activeTab, setActiveTab] = useState<TabTitle>(tabTitles.dataUtama);
+const TableContainer = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  const { data: dataUtama } = useFetchDataMain({
+    nomor_pengajuan: '20120B388FAE20240402000001',
+  });
+  const { data: dataEntitas } = useFetchDataEntity({
+    id_aju: '04eb6a72-bb63-5aed-5e92-f58a3bfd5da2',
+  });
+
+  const onPrev = () => {
+    if (activeTab > 0) {
+      setActiveTab(activeTab - 1);
+    }
+  };
+  const onNext = () => {
+    if (activeTab < tabTitles.length - 1) {
+      setActiveTab(activeTab + 1);
+    }
+  };
 
   return (
     <div className={styles.container}>
       <div className={styles.tabs}>
-        <button
-          className={`${styles.tab} ${activeTab === tabTitles.dataUtama ? styles.active : ''}`}
-          onClick={() => setActiveTab(tabTitles.dataUtama)}
-        >
-          Data Utama
-        </button>
-        <button
-          className={`${styles.tab} ${activeTab === tabTitles.dataEntitas ? styles.active : ''}`}
-          onClick={() => setActiveTab(tabTitles.dataEntitas)}
-        >
-          Data Entitas
-        </button>
-        <button
-          className={`${styles.tab} ${activeTab === tabTitles.dataPungutan ? styles.active : ''}`}
-          onClick={() => setActiveTab(tabTitles.dataPungutan)}
-        >
-          Data Pungutan
-        </button>
+        {tabTitles.map((tab, index) => (
+          <button
+            key={tab}
+            className={`${styles.tab} ${index === activeTab ? styles.active : ''}`}
+            onClick={() => setActiveTab(index)}
+          >
+            {tab}
+          </button>
+        ))}
       </div>
-
       <div className={styles.tabContent}>
-        {activeTab === tabTitles.dataUtama && <DataMain />}
-        {activeTab === tabTitles.dataEntitas && (
-          <div>{/* Data Entitas content will go here */}</div>
-        )}
-        {activeTab === tabTitles.dataPungutan && (
+        {activeTab === 0 && !!dataUtama && <DataMain data={dataUtama} />}
+        {activeTab === 1 && !!dataEntitas && <DataEntity data={dataEntitas} />}
+        {activeTab === 2 && (
           <div>{/* Data Pungutan content will go here */}</div>
         )}
+        <div className={styles.buttonContainer}>
+          <button type="button" disabled={activeTab === 0} onClick={onPrev}>
+            Sebelumnya
+          </button>
+          <button
+            type="button"
+            disabled={activeTab === tabTitles.length - 1}
+            onClick={onNext}
+          >
+            Selanjutnya
+          </button>
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default TableContainer;

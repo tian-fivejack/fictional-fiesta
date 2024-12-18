@@ -1,5 +1,7 @@
 .inputContainer {
   margin-bottom: 15px;
+  flex-grow: 1;
+  width: 100%;
 }
 
 .label {
@@ -19,4 +21,38 @@
 .input:disabled {
   background-color: #f5f5f5;
   cursor: not-allowed;
+}
+
+.inputFlex {
+  /* display: flex;
+  flex-direction: row;
+  align-items: center; */
+  position: relative;
+}
+
+/* .inputField {
+  flex: 1;
+  padding-right: 30px;
+}
+
+.inputIcon {
+  margin-left: -30px;
+  pointer-events: none;
+} */
+
+.inputField {
+  padding-right: 30px; /* Add padding to prevent text from overlapping the icon */
+}
+
+.inputIcon {
+  position: absolute;
+  right: 10px; /* Position the icon on the right */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust vertical alignment */
+}
+
+.superscript {
+  font-size: 0.75em;
+  vertical-align: super;
+  color: red;
 }
