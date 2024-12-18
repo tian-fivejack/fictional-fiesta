@@ -1,12 +1,10 @@
 .form {
-  width: 100%;
-  padding: 20px;
+  padding: 10px 36px 10px 16px;
+  /* width: 90%; */
 }
 
 .row {
   display: flex;
   gap: 48px;
-  /* justify-content: space-between; */
   margin-bottom: 15px;
-  width: 100%;
 }

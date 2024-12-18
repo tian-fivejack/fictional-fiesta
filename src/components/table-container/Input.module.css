@@ -1,13 +1,19 @@
 .inputContainer {
   margin-bottom: 15px;
-  flex-grow: 1;
+  /* flex-grow: 1; */
+  flex: 1;
+  flex-basis: 0;
   width: 100%;
+}
+
+.flexDouble {
+  flex: 2.16;
 }
 
 .label {
   display: block;
   margin-bottom: 5px;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .input {
@@ -15,7 +21,7 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 11px;
 }
 
 .input:disabled {
@@ -24,31 +30,25 @@
 }
 
 .inputFlex {
-  /* display: flex;
-  flex-direction: row;
-  align-items: center; */
   position: relative;
 }
 
-/* .inputField {
-  flex: 1;
+.inputDouble {
+  position: relative;
+  flex: 2;
+}
+
+.inputField {
   padding-right: 30px;
 }
 
 .inputIcon {
-  margin-left: -30px;
-  pointer-events: none;
-} */
-
-.inputField {
-  padding-right: 30px; /* Add padding to prevent text from overlapping the icon */
-}
-
-.inputIcon {
   position: absolute;
-  right: 10px; /* Position the icon on the right */
-  top: 50%; /* Center vertically */
-  transform: translateY(-50%); /* Adjust vertical alignment */
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding-left: 10px;
+  border-left: #ccc 1px solid;
 }
 
 .superscript {

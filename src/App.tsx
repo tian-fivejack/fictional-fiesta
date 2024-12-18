@@ -4,7 +4,7 @@ import TableContainer from './components/table-container/TableContainer';
 function App() {
   return (
     <>
-      <h1>Data Pemberitahuan</h1>
+      <h2>Data Pemberitahuan</h2>
       <TableContainer />
     </>
   );

@@ -10,21 +10,21 @@ const DataEntity: React.FC<{ data: DataEntitas }> = ({ data }) => {
         {
           label: 'Jenis Identitas',
           value: data.pengusaha.kd_identitas,
-          disabled: false,
+          disabled: true,
           name: 'kd_identitas',
           required: true,
         },
         {
           label: 'NIB',
           value: data.pengusaha.nib,
-          disabled: false,
+          disabled: true,
           name: 'nib',
           required: true,
         },
         {
           label: 'No Identitas',
           value: data.pengusaha.nomor_identitas,
-          disabled: false,
+          disabled: true,
           name: 'nomor_identitas',
           required: true,
           withIcon: 'search',
@@ -34,22 +34,23 @@ const DataEntity: React.FC<{ data: DataEntitas }> = ({ data }) => {
         {
           label: 'No Identitas (16 Digit)',
           value: data.pengusaha.no_identitas_16,
-          disabled: false,
+          disabled: true,
           name: 'no_identitas_16',
         },
         {
           label: 'Nama Perusahaan',
           value: data.pengusaha.nama_identitas,
-          disabled: false,
+          disabled: true,
           name: 'nama_identitas',
           required: true,
+          flexScale: 2,
         },
       ],
       [
         {
           label: 'Provinsi',
           value: data.pengusaha.provinsi_identitas,
-          disabled: false,
+          disabled: true,
           name: 'provinsi_identitas',
           required: true,
           withIcon: 'chevron-down',
@@ -57,28 +58,28 @@ const DataEntity: React.FC<{ data: DataEntitas }> = ({ data }) => {
         {
           label: 'Kota/Kabupaten',
           value: data.pengusaha.kota_identitas,
-          disabled: false,
+          disabled: true,
           name: 'kota_identitas',
           required: true,
         },
         {
           label: 'Kecamatan',
           value: data.pengusaha.kecamatan,
-          disabled: false,
+          disabled: true,
           name: 'kecamatan',
           required: true,
         },
         {
           label: 'Kode Pos',
           value: data.pengusaha.kode_pos,
-          disabled: false,
+          disabled: true,
           name: 'kode_pos',
           required: true,
         },
         {
           label: 'RT/RW',
           value: data.pengusaha.rt_rw,
-          disabled: false,
+          disabled: true,
           name: 'rt_rw',
           required: true,
         },
@@ -87,21 +88,21 @@ const DataEntity: React.FC<{ data: DataEntitas }> = ({ data }) => {
         {
           label: 'Telephone',
           value: data.pengusaha.tlp_identitas,
-          disabled: false,
+          disabled: true,
           name: 'tlp_identitas',
           required: true,
         },
         {
           label: 'Email',
           value: data.pengusaha.email_identitas,
-          disabled: false,
+          disabled: true,
           name: 'email_identitas',
           required: true,
         },
         {
           label: 'Status',
           value: data.pengusaha.status,
-          disabled: false,
+          disabled: true,
           name: 'status',
           required: true,
           withIcon: 'chevron-down',
@@ -110,11 +111,6 @@ const DataEntity: React.FC<{ data: DataEntitas }> = ({ data }) => {
     ],
     [data]
   );
-
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = e.target;
-  //   setFormData({ ...formData, [name]: value });
-  // };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -135,12 +131,11 @@ const DataEntity: React.FC<{ data: DataEntitas }> = ({ data }) => {
               name={inputProp.name}
               withIcon={inputProp.withIcon}
               required={inputProp.required}
+              flexScale={inputProp.flexScale}
             />
           ))}
         </div>
       ))}
-
-      {/* <button type="submit">Submit</button> */}
     </form>
   );
 };

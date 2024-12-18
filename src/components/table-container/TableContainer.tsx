@@ -54,11 +54,21 @@ const TableContainer = () => {
           <DataRetribution data={dataPungutan} />
         )}
         <div className={styles.buttonContainer}>
-          <button type="button" disabled={activeTab === 0} onClick={onPrev}>
+          <button
+            type="button"
+            className={activeTab === 0 ? styles.buttonDisabled : styles.button}
+            disabled={activeTab === 0}
+            onClick={onPrev}
+          >
             Sebelumnya
           </button>
           <button
             type="button"
+            className={
+              activeTab === tabTitles.length - 1
+                ? styles.buttonDisabled
+                : styles.button
+            }
             disabled={activeTab === tabTitles.length - 1}
             onClick={onNext}
           >

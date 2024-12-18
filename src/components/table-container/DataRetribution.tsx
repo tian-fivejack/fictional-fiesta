@@ -2,6 +2,9 @@ import React, { useMemo } from 'react';
 import Input, { InputProps } from './Input';
 import styles from './DataRetribution.module.css';
 import { DataPungutan } from '../../types/data';
+import { FiRefreshCw } from 'react-icons/fi';
+
+const separator = ['+', '-', '+', '='];
 
 const DataRetribution: React.FC<{ data: DataPungutan }> = ({ data }) => {
   const inputProps: Array<Array<InputProps>> = useMemo(
@@ -24,7 +27,7 @@ const DataRetribution: React.FC<{ data: DataPungutan }> = ({ data }) => {
         {
           label: 'Kurs',
           value: data.nilai_kurs,
-          disabled: false,
+          disabled: true,
           name: 'nilai_kurs',
         },
       ],
@@ -56,7 +59,7 @@ const DataRetribution: React.FC<{ data: DataPungutan }> = ({ data }) => {
         {
           label: 'Nilai FOB',
           value: data.transformed_nilai_fob,
-          disabled: false,
+          disabled: true,
           name: 'transformed_nilai_fob',
         },
       ],
@@ -84,25 +87,25 @@ const DataRetribution: React.FC<{ data: DataPungutan }> = ({ data }) => {
         {
           label: 'CIF',
           value: data.cif,
-          disabled: false,
+          disabled: true,
           name: 'cif',
         },
         {
           label: 'CIF Rp',
           value: data.cif_rp,
-          disabled: false,
+          disabled: true,
           name: 'cif rp',
         },
         {
           label: 'Bruto',
           value: data.berat_kotor,
-          disabled: false,
+          disabled: true,
           name: 'berat_kotor',
         },
         {
           label: 'Netto',
           value: data.berat_bersih,
-          disabled: false,
+          disabled: true,
           name: 'berat_bersih',
         },
         {
@@ -130,23 +133,36 @@ const DataRetribution: React.FC<{ data: DataPungutan }> = ({ data }) => {
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       {inputProps.map((group, i) => (
-        <div className={styles.row} key={i}>
-          {group.map((inputProp) => (
-            <Input
-              key={inputProp.name}
-              label={inputProp.label}
-              placeholder={inputProp.label}
-              value={inputProp.value}
-              disabled={inputProp.disabled}
-              name={inputProp.name}
-              withIcon={inputProp.withIcon}
-              required={inputProp.required}
-            />
+        <div className={i === 1 ? styles.rowSmallGap : styles.row} key={i}>
+          {group.map((inputProp, j) => (
+            <React.Fragment key={inputProp.name}>
+              <Input
+                label={inputProp.label}
+                placeholder={inputProp.label}
+                value={inputProp.value}
+                disabled={inputProp.disabled}
+                name={inputProp.name}
+                withIcon={inputProp.withIcon}
+                required={inputProp.required}
+              />
+              {i === 1 && j < group.length - 1 && (
+                <span className={styles.separator}>{separator[j]}</span>
+              )}
+              {i === 0 && j === group.length - 1 && (
+                <FiRefreshCw className={styles.buttonRefresh} />
+              )}
+            </React.Fragment>
           ))}
         </div>
       ))}
-
-      {/* <button type="submit">Submit</button> */}
+      <div className={styles.buttonContainer}>
+        <button type="button" className={styles.buttonData}>
+          Kelengkapan Data
+        </button>
+        <button type="submit" className={styles.buttonSubmit}>
+          Simpan
+        </button>
+      </div>
     </form>
   );
 };

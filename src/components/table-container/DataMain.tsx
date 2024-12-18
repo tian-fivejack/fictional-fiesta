@@ -2,6 +2,9 @@ import React, { useMemo } from 'react';
 import Input, { InputProps } from './Input';
 import styles from './DataMain.module.css';
 import { DataUtama } from '../../types/data';
+import jenisImpor from '../../helper/jenis-impor';
+import caraPembayaran from '../../helper/cara-pembayaran';
+import transaksi from '../../helper/transaksi';
 
 const DataMain: React.FC<{ data: DataUtama }> = ({ data }) => {
   const inputProps: Array<Array<InputProps>> = useMemo(
@@ -10,25 +13,25 @@ const DataMain: React.FC<{ data: DataUtama }> = ({ data }) => {
         {
           label: 'Nomor Pengajuan',
           value: data.nomor_pengajuan,
-          disabled: false,
+          disabled: true,
           name: 'nomor_pengajuan',
         },
         {
           label: 'Tanggal Pengajuan',
           value: data.tanggal_pengajuan,
-          disabled: false,
+          disabled: true,
           name: 'tanggal_pengajuan',
         },
         {
           label: 'Nomor Pendaftaran',
           value: data.nomor_pendaftaran,
-          disabled: false,
+          disabled: true,
           name: 'nomor_pendaftaran',
         },
         {
           label: 'Tanggal Pendaftaran',
           value: data.tanggal_pendaftaran,
-          disabled: false,
+          disabled: true,
           name: 'tanggal_pendaftaran',
         },
       ],
@@ -36,7 +39,7 @@ const DataMain: React.FC<{ data: DataUtama }> = ({ data }) => {
         {
           label: 'Kantor Pabean',
           value: data.ur_pabean_asal,
-          disabled: false,
+          disabled: true,
           name: 'ur_pabean_asal',
           required: true,
           withIcon: 'chevron-down',
@@ -44,14 +47,14 @@ const DataMain: React.FC<{ data: DataUtama }> = ({ data }) => {
         {
           label: 'SKEP Fasilitas',
           value: data.kd_skep_fasilitas,
-          disabled: false,
+          disabled: true,
           name: 'kd_skep_fasilitas',
           withIcon: 'chevron-down',
         },
         {
           label: 'Jenis PIB',
           value: data.jenis_pib,
-          disabled: false,
+          disabled: true,
           name: 'jenis_pib',
           required: true,
           withIcon: 'chevron-down',
@@ -60,24 +63,24 @@ const DataMain: React.FC<{ data: DataUtama }> = ({ data }) => {
       [
         {
           label: 'Jenis Impor',
-          value: data.kd_jenis_impor,
-          disabled: false,
+          value: jenisImpor(data.kd_jenis_impor),
+          disabled: true,
           name: 'kd_jenis_impor',
           required: true,
           withIcon: 'chevron-down',
         },
         {
           label: 'Cara Pembayaran',
-          value: data.kd_cara_bayar,
-          disabled: false,
+          value: caraPembayaran(data.kd_cara_bayar),
+          disabled: true,
           name: 'kd_cara_bayar',
           required: true,
           withIcon: 'chevron-down',
         },
         {
           label: 'Transaksi',
-          value: data.kd_transaksi,
-          disabled: false,
+          value: transaksi(data.kd_transaksi),
+          disabled: true,
           name: 'kd_transaksi',
           required: true,
           withIcon: 'chevron-down',
@@ -86,11 +89,6 @@ const DataMain: React.FC<{ data: DataUtama }> = ({ data }) => {
     ],
     [data]
   );
-
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = e.target;
-  //   setFormData({ ...formData, [name]: value });
-  // };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -115,8 +113,6 @@ const DataMain: React.FC<{ data: DataUtama }> = ({ data }) => {
           ))}
         </div>
       ))}
-
-      {/* <button type="submit">Submit</button> */}
     </form>
   );
 };

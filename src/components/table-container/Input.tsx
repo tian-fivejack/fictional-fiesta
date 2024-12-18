@@ -11,16 +11,20 @@ export interface InputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   name: string;
   withIcon?: 'chevron-down' | 'search';
+  flexScale?: number;
 }
 
 const Input: React.FC<InputProps> = ({
   label,
   withIcon,
   required,
+  flexScale,
   ...props
 }) => {
   return (
-    <div className={styles.inputContainer}>
+    <div
+      className={`${styles.inputContainer} ${flexScale === 2 && styles.flexDouble}`}
+    >
       <label className={styles.label}>
         {label}
         {required && <span className={styles.superscript}>*</span>}

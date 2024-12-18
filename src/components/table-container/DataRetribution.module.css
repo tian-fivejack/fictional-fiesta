@@ -1,12 +1,46 @@
 .form {
-  width: 100%;
   padding: 20px;
 }
 
 .row {
   display: flex;
   gap: 48px;
-  /* justify-content: space-between; */
   margin-bottom: 15px;
+}
+
+.rowSmallGap {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.buttonContainer {
   width: 100%;
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.buttonData {
+  background-color: #f5c555;
+}
+
+.buttonSubmit {
+  background-color: #3333f5;
+  color: #ffffff;
+}
+
+.separator {
+  margin: 28px 0px;
+  padding-left: 22px;
+  font-weight: bold;
+}
+
+.buttonRefresh {
+  margin: 18px 0px;
+  padding: 14px;
+  border-radius: 8px;
+  color: #ffffff;
+  background-color: #3333f5;
 }
